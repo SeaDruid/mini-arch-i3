@@ -19,6 +19,21 @@ sudo pacman -S iwd xclip less
 sudo pacman -S git code
 ```
 
+# Touchpad
+```sh
+sudo nano /etc/X11/xorg.conf.d/30-touchpad.conf
+
+# Then add this
+Section "InputClass"
+    Identifier "touchpad"
+    Driver "libinput"
+    MatchIsTouchpad "on"
+    Option "Tapping" "on"
+    Option "TapButton2" "2"  # Two-finger tap for right-click
+    Option "TapButton3" "3"  # Three-finger tap for middle-click
+EndSection
+```
+
 # Install Brave Browser
 ```sh
 sudo pacman -S --needed base-devel
@@ -30,11 +45,19 @@ yay -S brave
 ```
 
 # Fix resolution by lowering DPI
-```sh ~/.Xresources
+```sh
+# ~/.Xresources
 Xft.dpi: 220
-xterm*faceName: DejaVu Sans Mono:size=20
+xterm*faceName: DejaVu Sans Mono:size=10
 xterm*background: #2E3440
 xterm*foreground: #D8DEE9
+```
+
+The to merge the updates and refresh
+
+```sh
+xrdb -merge ~/.Xresources
+# Then CTRL+WIN+R to refresh
 ```
 
 # Audio via HDMI
